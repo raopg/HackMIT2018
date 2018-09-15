@@ -2,7 +2,7 @@
   "name": "hackmit2018",
   "version": "1.0.0",
   "description": "Stock predictor based on natural disaster",
-  "main": "index.js",
+  "main": "index.html",
   "dependencies": {
     "bootstrap": "^4.1.3",
     "jquery": "^3.3.1",
