@@ -18,49 +18,42 @@
     </head>
 
     <body>
-        <div class="container" style = "margin-top: 25px;">
-            <div class = "center-this col-6 col-md-6 col-md-offset-3">
-                <div class="row">
-                    <div class="input-group">
-                        <input id="search-input" class="form-control" type="text" name="search" placeholder="Cities" required/>
-                        <button class="btn btn-success" onclick="goToMaps()">Search</button>
-                    </div>
-                    <script>
-
-                    function goToMaps() {
-                        place = autocomplete.getPlace();
-
-                        console.log(place.geometry.location);
-                        var latitude = place.geometry.location.lat();
-                        var longitude = place.geometry.location.lng();
-                        window.location.replace("./maps.html?search=" + latitude + "=" + longitude);
-                    }
-
-                    var autocomplete;
-                    var place;
-
-                    function initAutocomplete() {
-                        var options = {types: ['(cities)'],
-                        componentRestrictions: {country: "us"}
-                        };
-                        var input = document.getElementById('search-input');
-                        var searchBox = new google.maps.places.SearchBox(input, options);
-                        autocomplete = new google.maps.places.Autocomplete(input);
-
-
-                        // Listen for the event fired when the user selects a prediction and retrieve
-                        // more details for that place.
-                        searchBox.addListener('places_changed', function() {
-                          var places = searchBox.getPlaces();
-                          console.log("places: " + places)
-
-
-
-
-                        });
-                    }
-                    </script>
+        <div id="container" class="center-this col-6 col-md-6 col-md-offset-3">
+            <div class="row">
+                <div class="input-group">
+                    <input id="search-input" class="form-control" type="text" name="search" placeholder="Cities" required/>
+                    <button class="btn btn-success" onclick="goToMaps()">Search</button>
                 </div>
+                <script>
+
+                function goToMaps() {
+                    place = autocomplete.getPlace();
+
+                    console.log(place.geometry.location);
+                    var latitude = place.geometry.location.lat();
+                    var longitude = place.geometry.location.lng();
+                    window.location.replace("./maps.html?lat=" + latitude + "?lon=" + longitude);
+                }
+
+                var autocomplete;
+                var place;
+
+                function initAutocomplete() {
+                    var options = {types: ['(cities)'],
+                                    componentRestrictions: {country: "us"}
+                                  };
+                    var input = document.getElementById('search-input');
+                    var searchBox = new google.maps.places.SearchBox(input, options);
+                    autocomplete = new google.maps.places.Autocomplete(input);
+
+
+                    // Listen for the event fired when the user selects a prediction and retrieve
+                    // more details for that place.
+                    searchBox.addListener('places_changed', function() {
+                      var places = searchBox.getPlaces();
+                    });
+                }
+                </script>
             </div>
         </div>
     </body>

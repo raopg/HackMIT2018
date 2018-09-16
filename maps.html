@@ -17,29 +17,26 @@
   </head>
 
   <body>
-    <div class = "row">
-    <div id="attractions" class = "split right col-6 col-md-6">
-      <input id="pac-input" class="controls" type="text" placeholder="Search Attractions">
-      <button id="addButton" onclick="addToList()" type="button">Add</button>
-      <button id="doneButton" onclick="finalizeRoutes()" type="button">Done</button>
-    </div>
+    <div id="attractions" class="split right">
+      <label for="attration">Add Attraction</label>
+      <div class="input-group">
+        <input id="pac-input" type="text" class="form-control" placeholder="1234 Right Way or The Best Place" required/>
+
+        <br>
+        <button id="addButton" class="btn btn-primary" onclick="addToList()">Add</button>
+      </div>
+      <ul id="toVisit"></ul>
+      <button id="doneButton" onclick="finalizeRoutes()" type="button">Done Adding</button>
     </div>
     <div id="map" class="split left"></div>
     <script>
 
-<<<<<<< HEAD
-      var vars = window.location.search;
-      index = vars.indexOf("=");
-      var str = vars.substring(index+1);
-      console.log(str);
-=======
       var vars = window.location.search
-      var index = vars.indexOf("=")
-      var str = vars.substring(index+1)
-      index = str.indexOf("=")
+      var index = vars.indexOf("lat=")
+      var str = vars.substring(index+4)
+      index = str.indexOf("lon=")
       var lat = parseFloat(str.substring(0, index))
-      var lon = parseFloat(str.substring(index+1))
->>>>>>> bf12bfc235752fff0f5483a2e689b0aafbfbd47e
+      var lon = parseFloat(str.substring(index+4))
 
       var savedLocations = []
 
@@ -55,9 +52,9 @@
         var searchBox = new google.maps.places.SearchBox(input);
 
         // Bias the SearchBox results towards current map's viewport.
-        // map.addListener('bounds_changed', function() {
-        //   searchBox.setBounds(map.getBounds());
-        // });
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
 
         var markers = [];
 
@@ -65,13 +62,12 @@
         // more details for that place.
         searchBox.addListener('places_changed', function() {
           var places = searchBox.getPlaces();
-          console.log(places);
 
           if (places.length == 0) {
             return;
           }
 
-          // Clear out the old markers.
+          // Add with old markers.
           markers.forEach(function(marker) {
             marker.setMap(map);
           });
@@ -80,6 +76,7 @@
           // For each place, get the icon, name and location.
           var bounds = new google.maps.LatLngBounds();
           places.forEach(function(place) {
+            console.log(place.geometry.location)
             if (!place.geometry) {
               console.log("Returned place contains no geometry");
               return;
@@ -100,13 +97,17 @@
               position: place.geometry.location
             }));
 
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
           });
+          // bounds.extend(place.geometry.location);
+          if (place.geometry.viewport) {
+            // Only geocodes have viewport.
+            console.log("union")
+            bounds.union(place.geometry.viewport);
+          } else {
+            console.log("extend")
+            bounds.extend(place.geometry.location);
+          }
+          console.log("fitbounds");
           map.fitBounds(bounds);
         });
       }
@@ -115,7 +116,7 @@
         var inputVal = document.getElementById('pac-input').value;
         var list = document.getElementById('toVisit');
         var li = document.createElement("li");
-        if (!savedLocations.includes(inputVal)) {
+        if (!savedLocations.includes(inputVal) && inputVal !== "") {
           console.log("added to list")
           li.appendChild(document.createTextNode(inputVal));
           list.appendChild(li);
