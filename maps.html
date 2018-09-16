@@ -5,10 +5,32 @@
     <meta charset="utf-8">
     <title>Places Search Box</title>
     <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
+
+
+      .split {
+        height: 100%;
+        width: 50%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        overflow-x: hidden;
+        padding-top: 20px;
+      }
+
+      /* Control the left side */
+      .left {
+        left: 0;
+        background-color: #111;
+      }
+
+      /* Control the right side */
+      .right {
+        right: 0;
+        background-color: red;
+         }
       #map {
         height: 100%;
+        width: 50%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -89,8 +111,17 @@
     </style>
   </head>
   <body>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div id="map"></div>
+    <div id="attractions" class = "split right">
+      <input id="pac-input" class="controls" type="text" placeholder="Search Attractions">
+      <button id="addButton" type="button">Add</button>
+      <ul>
+        <li>Boston Harbor</li>
+        <li>Boston Aquarium</li>
+        <li>Boston is Great</li>
+
+      </ul>
+    </div>
+    <div id="map" class="split left"></div>
     <script>
       // This example adds a search box to a map, using the Google Place Autocomplete
       // feature. People can enter geographical searches. The search box will return a
@@ -110,7 +141,6 @@
         // Create the search box and link it to the UI element.
         var input = document.getElementById('pac-input');
         var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
         // Bias the SearchBox results towards current map's viewport.
         map.addListener('bounds_changed', function() {
@@ -127,11 +157,11 @@
             return;
           }
 
-          // Clear out the old markers.
-          markers.forEach(function(marker) {
-            marker.setMap(null);
-          });
-          markers = [];
+          // // Clear out the old markers.
+          // markers.forEach(function(marker) {
+          //   marker.setMap(null);
+          // });
+          // markers = [];
 
           // For each place, get the icon, name and location.
           var bounds = new google.maps.LatLngBounds();
