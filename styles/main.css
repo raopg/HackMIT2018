@@ -1,3 +1,20 @@
+body {
+    background-color:  rgb(0, 0, 0);
+    background-image: url("../images/bg.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    font-size: 10px;
+    overflow: hidden;
+}
+
+#parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .row_header{
     margin: 0px auto;
     padding: 0px auto;
@@ -17,11 +34,6 @@
     
 }
 
-.footer{
-    background-color: #D1C4E9;
-    margin: 0px auto;
-    padding: 20px 0px 20px 0px;
-}
 .input_group input{
     
 }
