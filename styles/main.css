@@ -5,7 +5,7 @@ body {
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
-    font-size: 10px;
+    font-size: 12px;
     overflow: hidden;
 }
 
@@ -15,40 +15,50 @@ body {
     align-items: center;
 }
 
-.row_header{
+.row_header {
     margin: 0px auto;
     padding: 0px auto;
 
 }
 
-.row-content{
+.row-content {
     margin: 0px auto;
     padding: 50px 0px 50px 0px;
     border-bottom: 1px ridge;
     min-height: 400px;
 }
 
-.center-this{
+.center-this {
     margin:auto;
-    max-width: 300px;
-    
-}
-#container{
-  position: absolute;
-  top: 28%;
-  left:50%;
-  transform: translate(-50%,-50%);
+    max-width: 300px;  
 }
 
-.input_group input{
-    
+input:required {
+    opacity: 1;
 }
-#title-logo{
+
+#title {
     color:white;
     position: absolute;
+    font-size: 6em;
     top: 15%;
     left:50%;
     transform: translate(-50%,-50%);
 }
 
+#about {
+    color:white;
+    position: absolute;
+    width: 800px;
+    font-size: 1.7em;
+    top: 28%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+#container {
+  position: absolute;
+  top: 43%;
+  left:50%;
+  transform: translate(-50%,-50%);
 }
