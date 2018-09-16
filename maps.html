@@ -17,9 +17,14 @@
   </head>
 
   <body>
-    <div id="attractions" class = "split right">
-      <input id="pac-input" class="controls" type="text" placeholder="Search Attractions">
-      <button id="addButton" onclick="addToList()" type="button">Add</button>
+    <div id="attractions" class="split right">
+      <label for="attration">Add Attraction</label>
+      <div class="input-group">
+        <input id="pac-input" type="text" class="form-control" placeholder="1234 Right Way or The Best Place" required/>
+
+        <br>
+        <button id="addButton" class="btn btn-primary" onclick="addToList()">Add</button>
+      </div>
       <ul id="toVisit"></ul>
       <button id="doneButton" onclick="finalizeRoutes()" type="button">Done Adding</button>
     </div>
@@ -27,15 +32,19 @@
     <script>
 
       var vars = window.location.search
-      index = vars.indexOf("=")
+      var index = vars.indexOf("=")
       var str = vars.substring(index+1)
-      console.log(str)
+      index = str.indexOf("=")
+      var lat = parseFloat(str.substring(0, index))
+      var lon = parseFloat(str.substring(index+1))
+
+
 
       var savedLocations = []
 
       function initAutocomplete() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2195},
+          center: {lat: lat, lng: lon},
           zoom: 13,
           mapTypeId: 'roadmap'
         });
@@ -54,7 +63,6 @@
         // Listen for the event fired when the user selects a prediction and retrieve
         // more details for that place.
         searchBox.addListener('places_changed', function() {
-          addToList();
           var places = searchBox.getPlaces();
 
           if (places.length == 0) {
