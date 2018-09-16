@@ -33,6 +33,12 @@ body {
     max-width: 300px;
     
 }
+.container{
+  position: absolute;
+  top: 28%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
 
 .input_group input{
     
