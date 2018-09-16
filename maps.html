@@ -126,6 +126,11 @@
         document.getElementById('pac-input').value="";
       }
 
+      function calculateDists() {
+        distance('MIT, Cambridge, MA, USA', 'MIT Museum Building, Massachusetts Avenue, Cambridge, MA, USA');
+         console.log(distance);
+      }
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5S16rZBLJVN6JcmByCuQ6299qrkwL3Uo&libraries=places&callback=initAutocomplete"
          async defer></script>
