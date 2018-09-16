@@ -38,8 +38,6 @@
       var lat = parseFloat(str.substring(0, index))
       var lon = parseFloat(str.substring(index+1))
 
-
-
       var savedLocations = []
 
       function initAutocomplete() {
@@ -54,9 +52,9 @@
         var searchBox = new google.maps.places.SearchBox(input);
 
         // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-          searchBox.setBounds(map.getBounds());
-        });
+        // map.addListener('bounds_changed', function() {
+        //   searchBox.setBounds(map.getBounds());
+        // });
 
         var markers = [];
 
@@ -64,6 +62,7 @@
         // more details for that place.
         searchBox.addListener('places_changed', function() {
           var places = searchBox.getPlaces();
+          console.log(places);
 
           if (places.length == 0) {
             return;
