@@ -121,6 +121,11 @@
     <div id="map" class="split left"></div>
     <script>
 
+      var vars = window.location.search
+      index = vars.indexOf("=")
+      var str = vars.substring(index+1)
+      console.log(str)
+
       function initAutocomplete() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -33.8688, lng: 151.2195},

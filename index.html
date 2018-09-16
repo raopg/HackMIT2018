@@ -36,26 +36,22 @@
                         window.location.replace("./maps.html?search=" + inputVal);
 
                     }
+
                     function initAutocomplete() {
 
-                        
+
                         var options = {types: ['(cities)'],
                         componentRestrictions: {country: "us"}
                         };
                         var input = document.getElementById('search-input');
                         var searchBox = new google.maps.places.SearchBox(input, options);
 
-<<<<<<< HEAD
-=======
                         // Listen for the event fired when the user selects a prediction and retrieve
                         // more details for that place.
->>>>>>> c4d7e29094fa7ba7e44e4c95e8541ee31800bed9
                         searchBox.addListener('places_changed', function() {
                           var places = searchBox.getPlaces();
-
-                          if (places.length == 0) {
-                            return;
-                          }
+                          console.log("places: " + places)
+                          console.log(places)
 
                         });
                     }
