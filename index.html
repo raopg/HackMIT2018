@@ -29,9 +29,11 @@
                             </div>
                         </div>
                     <script>
+
                     function goToMaps() {
                         console.log("here");
-                        window.location.replace("./maps.html");
+                        var inputVal = document.getElementById("search-input").value;
+                        window.location.replace("./maps.html?search=" + inputVal);
 
                     }
                     function initAutocomplete() {
