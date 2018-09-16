@@ -17,19 +17,20 @@
   </head>
 
   <body>
-    <div id="attractions" class = "split right">
+    <div class = "row">
+    <div id="attractions" class = "split right col-6 col-md-6">
       <input id="pac-input" class="controls" type="text" placeholder="Search Attractions">
       <button id="addButton" onclick="addToList()" type="button">Add</button>
-      <ul id="toVisit"></ul>
-      <button id="doneButton" onclick="finalizeRoutes()" type="button">Done Adding</button>
+      <button id="doneButton" onclick="finalizeRoutes()" type="button">Done</button>
+    </div>
     </div>
     <div id="map" class="split left"></div>
     <script>
 
-      var vars = window.location.search
-      index = vars.indexOf("=")
-      var str = vars.substring(index+1)
-      console.log(str)
+      var vars = window.location.search;
+      index = vars.indexOf("=");
+      var str = vars.substring(index+1);
+      console.log(str);
 
       var savedLocations = []
 
