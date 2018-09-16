@@ -13,9 +13,8 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.3.1",
-    "lite-server": "^2.3.0",
-    "popper": "^1.0.1"
-  },
+    "lite-server": "^2.3.0"
+      },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run lite",
