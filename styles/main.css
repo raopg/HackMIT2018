@@ -33,7 +33,7 @@ body {
     max-width: 300px;
     
 }
-.container{
+#container{
   position: absolute;
   top: 28%;
   left:50%;
