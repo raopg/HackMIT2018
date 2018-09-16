@@ -13,22 +13,20 @@
 
         <!--Custom CSS-->
         <link rel="stylesheet" href="styles/main.css">
+        <script rel="stylesheet" href="styles/search.js"> </script>
+
         <title>Travel Mapper</title>
     </head>
 
-    <body background="">
+    <body>
         <div class="container" style = "margin-top: 25px;">
             <div class = "center-this col-6 col-md-6 col-md-offset-3">
                 <div class="row">
                     <form role="form" id="search-bar">
                             <div class="form-group">
-                                    <div class="input-group">
-                                        <input id="1" class="form-control" type="text" name="search" placeholder="City, State" required/>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-success" type="submit">
-                                                 Search
-                                            </button>
-                                        </span>
+                                <div class="input-group">
+                                    <input id="search-input" class="form-control" type="text" name="search" placeholder="City, State" required/>
+                                    <button class="btn btn-success" type="submit">Search</button>
                                 </div>
                             </div>
                     </form>
