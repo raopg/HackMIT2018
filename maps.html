@@ -1,121 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!--favicon-->
+    <link rel="icon" href="./images/favicon.jpeg">
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/fontawesome/fontawesome-free/css/fontawesome.min.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="styles/map.css">
+
     <title>Places Search Box</title>
-    <style>
-
-
-      .split {
-        height: 100%;
-        width: 50%;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        overflow-x: hidden;
-        padding-top: 20px;
-      }
-
-      /* Control the left side */
-      .left {
-        left: 0;
-      }
-
-      /* Control the right side */
-      .right {
-        right: 0;
-        background-image:  linear-gradient(#aec6cf, red);
-;
-         }
-      #map {
-        height: 100%;
-        width: 50%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #description {
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-      }
-
-      #infowindow-content .title {
-        font-weight: bold;
-      }
-
-      #infowindow-content {
-        display: none;
-      }
-
-      #map #infowindow-content {
-        display: inline;
-      }
-
-      .pac-card {
-        margin: 10px 10px 0 0;
-        border-radius: 2px 0 0 2px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        background-color: #fff;
-        font-family: Roboto;
-      }
-
-      #pac-container {
-        padding-bottom: 12px;
-        margin-right: 12px;
-      }
-
-      .pac-controls {
-        display: inline-block;
-        padding: 5px 11px;
-      }
-
-      .pac-controls label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-      }
-
-      #pac-input {
-        background-color: #fff;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        margin-left: 12px;
-        padding: 0 11px 0 13px;
-        text-overflow: ellipsis;
-        width: 400px;
-      }
-
-      #pac-input:focus {
-        border-color: #4d90fe;
-      }
-
-      #title {
-        color: #fff;
-        background-color: #4d90fe;
-        font-size: 25px;
-        font-weight: 500;
-        padding: 6px 12px;
-      }
-      #target {
-        width: 345px;
-      }
-    </style>
   </head>
+
   <body>
     <div id="attractions" class = "split right">
       <input id="pac-input" class="controls" type="text" placeholder="Search Attractions">
       <button id="addButton" onclick="addToList()" type="button">Add</button>
-      <ul id="toVisit">
-      </ul>
+      <ul id="toVisit"></ul>
       <button id="doneButton" onclick="finalizeRoutes()" type="button">Done Adding</button>
     </div>
     <div id="map" class="split left"></div>
@@ -125,6 +30,8 @@
       index = vars.indexOf("=")
       var str = vars.substring(index+1)
       console.log(str)
+
+      var savedLocations = []
 
       function initAutocomplete() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -156,9 +63,9 @@
 
           // Clear out the old markers.
           markers.forEach(function(marker) {
-            marker.setMap(null);
+            marker.setMap(map);
           });
-          markers = [];
+          markers = new Set();
 
           // For each place, get the icon, name and location.
           var bounds = new google.maps.LatLngBounds();
@@ -169,14 +76,14 @@
             }
             var icon = {
               url: place.icon,
-              size: new google.maps.Size(71, 71),
+              size: new google.maps.Size(75, 75),
               origin: new google.maps.Point(0, 0),
               anchor: new google.maps.Point(17, 34),
               scaledSize: new google.maps.Size(25, 25)
             };
 
             // Create a marker for each place.
-            markers.push(new google.maps.Marker({
+            markers.add(new google.maps.Marker({
               map: map,
               icon: icon,
               title: place.name,
@@ -198,8 +105,15 @@
         var inputVal = document.getElementById('pac-input').value;
         var list = document.getElementById('toVisit');
         var li = document.createElement("li");
-        li.appendChild(document.createTextNode(inputVal));
-        list.appendChild(li);
+        if (!savedLocations.includes(inputVal)) {
+          console.log("added to list")
+          li.appendChild(document.createTextNode(inputVal));
+          list.appendChild(li);
+          savedLocations.push(inputVal);
+        } else {
+          console.log("not added to list")
+        }
+        document.getElementById('pac-input').value="";
       }
 
     </script>
