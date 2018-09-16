@@ -27,10 +27,19 @@
     <div id="map" class="split left"></div>
     <script>
 
+<<<<<<< HEAD
       var vars = window.location.search;
       index = vars.indexOf("=");
       var str = vars.substring(index+1);
       console.log(str);
+=======
+      var vars = window.location.search
+      var index = vars.indexOf("=")
+      var str = vars.substring(index+1)
+      index = str.indexOf("=")
+      var lat = parseFloat(str.substring(0, index))
+      var lon = parseFloat(str.substring(index+1))
+>>>>>>> bf12bfc235752fff0f5483a2e689b0aafbfbd47e
 
       var savedLocations = []
 
@@ -46,9 +55,9 @@
         var searchBox = new google.maps.places.SearchBox(input);
 
         // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-          searchBox.setBounds(map.getBounds());
-        });
+        // map.addListener('bounds_changed', function() {
+        //   searchBox.setBounds(map.getBounds());
+        // });
 
         var markers = [];
 
@@ -56,6 +65,7 @@
         // more details for that place.
         searchBox.addListener('places_changed', function() {
           var places = searchBox.getPlaces();
+          console.log(places);
 
           if (places.length == 0) {
             return;
