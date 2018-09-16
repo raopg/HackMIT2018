@@ -17,26 +17,29 @@
   </head>
 
   <body>
-    <div id="attractions" class="split right">
-      <label for="attration">Add Attraction</label>
-      <div class="input-group">
-        <input id="pac-input" type="text" class="form-control" placeholder="1234 Right Way or The Best Place" required/>
-
-        <br>
-        <button id="addButton" class="btn btn-primary" onclick="addToList()">Add</button>
-      </div>
-      <ul id="toVisit"></ul>
-      <button id="doneButton" onclick="finalizeRoutes()" type="button">Done Adding</button>
+    <div class = "row">
+    <div id="attractions" class = "split right col-6 col-md-6">
+      <input id="pac-input" class="controls" type="text" placeholder="Search Attractions">
+      <button id="addButton" onclick="addToList()" type="button">Add</button>
+      <button id="doneButton" onclick="finalizeRoutes()" type="button">Done</button>
+    </div>
     </div>
     <div id="map" class="split left"></div>
     <script>
 
+<<<<<<< HEAD
+      var vars = window.location.search;
+      index = vars.indexOf("=");
+      var str = vars.substring(index+1);
+      console.log(str);
+=======
       var vars = window.location.search
       var index = vars.indexOf("=")
       var str = vars.substring(index+1)
       index = str.indexOf("=")
       var lat = parseFloat(str.substring(0, index))
       var lon = parseFloat(str.substring(index+1))
+>>>>>>> bf12bfc235752fff0f5483a2e689b0aafbfbd47e
 
       var savedLocations = []
 
