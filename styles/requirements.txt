@@ -1,0 +1,4 @@
+npm install bootstrap
+npm install jquery
+npm install lite-server
+npm install popper.js --save
